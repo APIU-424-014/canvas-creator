@@ -10,7 +10,8 @@ Arg.prototype.isValid = function(value) {
 		return (value % 256) === value;
 	} else if (this.type === Arg.number || this.type === Arg.rad
 			|| this.type === Arg.xcoord || this.type == Arg.ycoord) {
-		return (typeof value) === "number";
+		return (typeof value) === "number"
+				|| /^[\W]*[0-9]{1,}[\.]*[0-9]*[\W]*$/.exec(value) !== null;
 	} else if (this.type === Arg.oneToZero) {
 		return (typeof value) === "number" && value >= 0 && value <= 1;
 	} else if (this.type === Arg.text) {

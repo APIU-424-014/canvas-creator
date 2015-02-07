@@ -4,7 +4,7 @@ clean up PathCollector
 
 Done:
 2015.02.07
-isValid: fixed
+isValid: fix fixed
 PathCollector checks whether arguments are complete prior to adding to path.
 
 2015.02.06
