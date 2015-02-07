@@ -1,6 +1,54 @@
 Todo:
 use click events to collect data to fill modeInputCollector
 clean up PathCollector
+create a base class for CanvasMethods
+create subclasses following this list {
+==Drawing==
+CanvasRenderingContext2D.arc()
+CanvasRenderingContext2D.arcTo()
+CanvasRenderingContext2D.bezierCurveTo()
+CanvasRenderingContext2D.drawImage()
+CanvasRenderingContext2D.fillRect()
+CanvasRenderingContext2D.fillText()
+CanvasRenderingContext2D.lineTo()
+CanvasRenderingContext2D.moveTo()
+CanvasRenderingContext2D.quadraticCurveTo()
+CanvasRenderingContext2D.rect()
+CanvasRenderingContext2D.strokeRect()
+CanvasRenderingContext2D.strokeText()
+==strong drawing (looks different if applied on a canvas above an other canavs, as if applied last on the lower)==
+CanvasRenderingContext2D.clearRect()
+==Controlling==
+CanvasRenderingContext2D.beginPath()
+CanvasRenderingContext2D.clip()
+CanvasRenderingContext2D.closePath()
+CanvasRenderingContext2D.restore()
+CanvasRenderingContext2D.save()
+==Other==
+CanvasRenderingContext2D.createImageData()
+CanvasRenderingContext2D.getImageData()
+CanvasRenderingContext2D.isPointInPath()
+CanvasRenderingContext2D.isPointInStroke()
+CanvasRenderingContext2D.measureText()
+CanvasRenderingContext2D.putImageData()
+==Transformation==
+CanvasRenderingContext2D.rotate()
+CanvasRenderingContext2D.scale()
+CanvasRenderingContext2D.setTransform()
+CanvasRenderingContext2D.transform()
+CanvasRenderingContext2D.translate()
+==Style Creator==
+CanvasRenderingContext2D.createLinearGradient()
+CanvasRenderingContext2D.createPattern()
+CanvasRenderingContext2D.createRadialGradient()
+==Style Applier==
+CanvasRenderingContext2D.fill()
+CanvasRenderingContext2D.stroke()
+==Stroke Style Attribute Manipulator==
+CanvasRenderingContext2D.getLineDash()
+CanvasRenderingContext2D.setLineDash()
+}
+categorize attributes
 
 Done:
 2015.02.07
