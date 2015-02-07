@@ -16,7 +16,7 @@ PathCollector.prototype.getElement = function() {
 	if (element)
 		return element;
 	var fieldset = document.createElement("fieldset");
-	fieldset.id = this.id;
+	fieldset.id = this.id; //required to reuse generated html elements
 	var legend = document.createElement("legend");
 	legend.innerHTML = "Path modes";
 	fieldset.appendChild(legend);
@@ -33,12 +33,10 @@ PathCollector.prototype.getElement = function() {
 		input.onchange = function(e) {
 			PathCollector.valueChanged.call(this, e, that);
 		};
-		input.mode = mode;
 		input.PathCollector = this;
 		label.appendChild(input);// putting an input into a label has the
 		// same effect as using "for", the "for" attribute of a label can't
-		// be
-		// set using JS.
+		// be set using JS.
 		fieldset.appendChild(label);
 	}
 	return fieldset;
@@ -46,14 +44,13 @@ PathCollector.prototype.getElement = function() {
 
 PathCollector.prototype.showAttributeBox = function(mode, parent) {
 	if (parent.firstChild) {
-		parent.firstChild.style.visibility = "hidden";
+		parent.firstChild.style.visibility = "hidden"; //TODO: use display:none, as hidden elements take up space
 		document.body.appendChild(parent.firstChild);
 	}
 	var element = this.inputs[mode.name].getElement();
 	element.style.visibility = "visible";
 	parent.appendChild(element);
 };
-
 PathCollector.prototype.add = function(sender, mode) {
 	if (sender.isComplete()) {
 		this.path.add(mode, sender.getValueList());
@@ -64,7 +61,7 @@ PathCollector.instances = 0;
 PathCollector.valueChanged = function(e, target) {
 	console.log(target);
 	// this in context of html element event
-	target.showAttributeBox(this.mode, document
+	target.showAttributeBox(target.inputs[this.value].mode, document
 			.getElementById("sub_attributes"));
 };
 PathCollector.prototype.drawDummy = function(sender, valueList) {

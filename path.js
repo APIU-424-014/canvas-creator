@@ -1,6 +1,7 @@
 function Path() {
-	this.modes = []; //list modes composed of modes from Path.modes
-	this.valueLists = []; //list of valueList belonging to the this.mode at same index
+	this.modes = []; // list modes composed of modes from Path.modes
+	this.valueLists = []; // list of valueList belonging to the this.mode at
+	// same index
 	this.changedEvent = new Event(this);// (sender) emitted on add
 }
 
@@ -24,7 +25,8 @@ Path.prototype.draw = function(context) {
 	}
 };
 Path.prototype.toCode = function(nameOfContext) {
-	//composes one method name and its arguments per line to be called on an object of nameOfContext
+	// composes one method name and its arguments per line to be called on an
+	// object of nameOfContext
 	var ret = "";
 	for (var i = 0; i < this.modes.length; i++) {
 		ret += nameOfContext + "."
@@ -33,8 +35,7 @@ Path.prototype.toCode = function(nameOfContext) {
 	return ret;
 };
 
-
-//static values
+// static values
 Path.moveTo = new Mode("moveTo", [
 		new Arg("x", Arg.xcoord, "X coordinate of new start point", 0),
 		new Arg("y", Arg.ycoord, "Y coordinate of new start point", 0) ],
@@ -88,5 +89,18 @@ Path.quadraticCurveTo = new Mode(
 				new Arg("y", Arg.ycoord, "Y coordinate of the end point", 1) ],
 		"A quadratic curve towards end point using a control point (peak is between theoretic x axis and control point)",
 		"developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.quadraticCurveTo");
+Path.fillRect = new Mode("fillRect", [
+		new Arg("x", Arg.xcoord, "X coordinate of the position", 0),
+		new Arg("y", Arg.ycoord, "Y coordinate of the position", 0),
+		new Arg("w", Arg.xoffset, "Width of the rectangle", 0),
+		new Arg("h", Arg.xoffset, "Height of the rectangle", 0) ], "A rectangle without borders (not moving the cursor)",
+		"developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.fillRect");
+Path.rect = new Mode("rect", [
+		new Arg("x", Arg.xcoord, "X coordinate of the position", 0),
+		new Arg("y", Arg.ycoord, "Y coordinate of the position", 0),
+		new Arg("w", Arg.xoffset, "Width of the rectangle", 0),
+		new Arg("h", Arg.yoffset, "Height of the rectangle", 0) ], "A rectangle with borders (moving the the cursor to x/y",
+		"developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.fillRect");
+
 Path.modes = [ Path.moveTo, Path.lineTo, Path.arc, Path.arcTo,
-		Path.bezierCurveTo, Path.quadraticCurveTo ];
+		Path.bezierCurveTo, Path.quadraticCurveTo, Path.fillRect, Path.rect];
