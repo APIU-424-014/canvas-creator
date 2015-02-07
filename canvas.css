@@ -1,0 +1,10 @@
+canvas {
+	border: 1px solid black;
+	float: left;
+	margin: 10px;
+}
+
+pre#code {
+	width: 100em;
+	margin-left: 1em;
+}

@@ -1,0 +1,37 @@
+Todo:
+use click events to collect data to fill modeInputCollector
+clean up PathCollector
+
+Done:
+2015.02.07
+isValid: fixed
+PathCollector checks whether arguments are complete prior to adding to path.
+
+2015.02.06
+Moved to use the prototype object for classes
+Added some comments
+HtmlEvents are now bound a bit different. An anonymous method is used to call the redirector method. To keep the this-context pointing to the html element in the redirector the redirectors "function.call" method is used.
+
+2015.02.05
+Event: arguments are passed as arguments beginning with 'sender' (used to be sender and a list of arguments)
+Path: capable to add modes and valueLists, emits changedEvent on add
+Drawer: draws objects which provide a draw(context)-method within a given rectangle, draw method matches paths changedEvent
+Coder: sets the innerHTML of [HTML Object] to the code returned by objects providing toCode(nameOfContext) methods, show method matches paths changedEvent
+
+
+2015.02.04
++Event: a class to handle events
+pathCollectors use Event
+Arg and Mode extended to be able to recreate parameter values
+
+2015.02.03
+Moved mode selection and mode input into pathCollector classes
+
+2015.02.02
++Mode: a class representing name, arguments, description and reference.
++Mode: creates its own inputs and keeps a pointer to them.
+
+2015.02.01:
++Path: collection by its types
++Arg: with types and validation
++creator.html: onchange on path_radio

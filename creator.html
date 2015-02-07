@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" media="all" title="Default"
+	href="canvas.css" />
+<script type="text/javascript" src="creator.js"></script>
+<script type="text/javascript" src="mode.js"></script>
+<script type="text/javascript" src="arg.js"></script>
+<script type="text/javascript" src="path.js"></script>
+<script type="text/javascript" src="pathCollector.js"></script>
+<script type="text/javascript" src="modeInputCollector.js"></script>
+<script type="text/javascript" src="event.js"></script>
+<script type="text/javascript" src="drawer.js"></script>
+<script type="text/javascript" src="coder.js"></script>
+<script type="text/javascript" src="mouseInputProvider.js"></script>
+
+<title>Titel</title>
+</head>
+<body>
+	<div>
+		<div>
+			<label for="cursor_path">
+				<img alt="Path" src=none />
+			</label>
+			<input type="radio" name="cursor" id="cursor_path" value="path" checked/>
+			<label for="cursor_other">
+				<img alt="Other" src=none />
+			</label>
+			<input type="radio" name="cursor" id="cursor_other" value="other" />
+		</div>
+		<div id=sub_holder></div>
+		<div id=sub_attributes></div>
+		<canvas id=draw width=800 height=600></canvas>
+		<pre id=code></pre>
+	</div>
+</body>
+</html>
