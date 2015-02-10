@@ -11,8 +11,8 @@ MouseInputProvider.onclickRedirector = function(e, target) {
 	if (!e)
 		e = window.event;
 	console.log(e, target);
-	//x = X of parent - X of top left corner of this ⁻ border
-	var x = e.clientX -this.offsetLeft - this.clientLeft;
+	// x = X of parent - X of top left corner of this ⁻ border
+	var x = e.clientX - this.offsetLeft - this.clientLeft;
 	var y = e.clientY - this.offsetTop - this.clientTop;
 	target.clickEvent.emit(x, y);
 };

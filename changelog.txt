@@ -1,8 +1,13 @@
 Todo:
-use click events to collect data to fill modeInputCollector
+use mouse events to collect data to fill modeInputCollector
 clean up PathCollector
-create a base class for CanvasMethods
+figure out whether to use html element directly or its id is the better choice to keep a reference to it
+decide where to use which .class for CSS formating
+Arg needs to handle type.image as ImageSource (using HtmlElementId??)
+
+
 create subclasses following this list {
+===Methods===
 ==Drawing==
 CanvasRenderingContext2D.arc()
 CanvasRenderingContext2D.arcTo()
@@ -18,7 +23,7 @@ CanvasRenderingContext2D.strokeRect()
 CanvasRenderingContext2D.strokeText()
 ==strong drawing (looks different if applied on a canvas above an other canavs, as if applied last on the lower)==
 CanvasRenderingContext2D.clearRect()
-==Controlling==
+==Staging==
 CanvasRenderingContext2D.beginPath()
 CanvasRenderingContext2D.clip()
 CanvasRenderingContext2D.closePath()
@@ -47,10 +52,38 @@ CanvasRenderingContext2D.stroke()
 ==Stroke Style Attribute Manipulator==
 CanvasRenderingContext2D.getLineDash()
 CanvasRenderingContext2D.setLineDash()
+===Attributes===
+==Main==
+CanvasRenderingContext2D.canvas
+==Style==
+*CanvasRenderingContext2D.fillStyle
+*CanvasRenderingContext2D.globalAlpha
+*CanvasRenderingContext2D.globalCompositeOperation
+*CanvasRenderingContext2D.lineCap
+*CanvasRenderingContext2D.lineDashOffset
+*CanvasRenderingContext2D.lineJoin
+*CanvasRenderingContext2D.lineWidth
+*CanvasRenderingContext2D.miterLimit
+*CanvasRenderingContext2D.shadowBlur
+*CanvasRenderingContext2D.shadowColor
+*CanvasRenderingContext2D.shadowOffsetX
+*CanvasRenderingContext2D.shadowOffsetY
+*CanvasRenderingContext2D.strokeStyle
+==Text==
+*CanvasRenderingContext2D.font
+*CanvasRenderingContext2D.textAlign
+*CanvasRenderingContext2D.textBaseline
+
+Attributes marked with * are part of state and affected by save/restore.
+Clipping region, dash list and transformation matrix are affected by save/restore too.
 }
-categorize attributes
 
 Done:
+2015.02.10
+transfomation added
+fillText added
+more drawing methods added (drawImage doesn't work)
+
 2015.02.07
 isValid: fix fixed
 PathCollector checks whether arguments are complete prior to adding to path.
@@ -83,3 +116,4 @@ Moved mode selection and mode input into pathCollector classes
 +Path: collection by its types
 +Arg: with types and validation
 +creator.html: onchange on path_radio
+

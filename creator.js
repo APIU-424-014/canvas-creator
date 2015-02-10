@@ -7,7 +7,7 @@ function init() {
 	context.strokeStyle = "rgba(255,0,0,0.5)";
 	context.lineWidth = 3;
 	context.moveTo(70, 70);
-	context.lineTo(100, 70);//here the path ends
+	context.lineTo(100, 70);// here the path ends
 	context.rect(150, 70, 50, 50);
 	context.lineTo(125, 95); // this line is connected to the rectangle
 	context.stroke();
@@ -18,7 +18,7 @@ function init() {
 	context.lineTo(100, 140);
 	context.fillRect(150, 140, 50, 50);
 	context.lineTo(125, 165); // this line isn't connect to the rectangle, but
-								// to lineTo(100,140)
+	// to lineTo(100,140)
 	context.stroke();
 	context.fill();
 	context.beginPath();
@@ -26,17 +26,37 @@ function init() {
 
 	context.fill();
 
-	// TODO: these lines should be moved to an own class when other drawing
-	// methods are implemented
-	var path = document.getElementById("cursor_path");
-	path.onchange = showPathBox;
-
 	// collects clicks on canvas
 	mouseInputProvider = new MouseInputProvider(canvas);
 
 	// provides access to the different Path.mode by showing different input
 	// fields
-	pathCollector = new PathCollector();
+	console.log(CanvasDrawingMethod);
+	drawingMethodSelector = new InputCollectorSelector(
+			CanvasDrawingMethod.methods, "Path", "DrawingMethodAttributes");
+
+	drawingMethodSelector.showIn("DrawingMethodSelector");
+
+	styleApplierMethodSelector = new InputCollectorSelector(
+			CanvasStyleApplierMethod.methods, "Style Applier",
+			"StyleApplierMethodAttributes");
+	styleApplierMethodSelector.showIn("StyleApplierMethodSelector");
+
+	transformationMethodSelector = new InputCollectorSelector(
+			CanvasTransformationMethod.methods, "Transformation",
+			"TransformationMethodAttributes");
+	transformationMethodSelector.showIn("TransformationMethodSelector");
+
+	// adding everything to path is just for testing
+	path = new Path();
+	function PathAdderCallback(sender, methodInputCollector, method, valueList) {
+		this.add(method, valueList);
+	}
+	drawingMethodSelector.userAcceptedEvent.register(path, PathAdderCallback);
+	styleApplierMethodSelector.userAcceptedEvent.register(path,
+			PathAdderCallback);
+	transformationMethodSelector.userAcceptedEvent.register(path,
+			PathAdderCallback);
 
 	// draws stuff to canvas
 	drawer = new Drawer(canvas.getContext("2d"), 0, 0, 800, 600);
@@ -46,30 +66,18 @@ function init() {
 	coder = new Coder(document.getElementById("code"), "context");
 
 	// lets Drawer and Coder react to changes in Path
-	pathCollector.path.changedEvent.register(drawer, drawer.draw);
-	pathCollector.path.changedEvent.register(coder, coder.show);
+	path.changedEvent.register(drawer, drawer.draw);
+	path.changedEvent.register(coder, coder.show);
 
 	// shows the box containing the different selectable modes of Path.modes on
 	// page load
-	showPathBox();
 }
-var pathCollector;
+var drawingMethodSelector;
+var styleApplierMethodSelector;
+var transformationMethodSelector;
+var path;
 var drawer;
 var coder;
 var mouseInputProvider;
-
-function showPathBox() {
-	var sub_holder = document.getElementById("sub_holder");
-	if (sub_holder.firstChild) {
-		// moving other element out of the box
-		sub_holder.firstChild.style.visibility = "hidden";
-		document.body.appendChild(sub_holder.firstChild);
-	}
-
-	// moving the Path.modes selector box to its place
-	var pce = pathCollector.getElement();
-	pce.style.visibility = "visible";
-	sub_holder.appendChild(pce);
-}
 window.onload = init;
 var current = 0;
