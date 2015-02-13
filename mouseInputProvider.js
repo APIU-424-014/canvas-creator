@@ -4,12 +4,12 @@ function MouseInputProvider(canvas) {
 	this.canvas = canvas;
 	this.mouseDown = null;
 	this.leftAt = null;
-	this.clickEvent = new Event();// (sender,x,y);
-	this.mouseDownEvent = new Event(); // (sender, x,y);
-	this.mouseUpEvent = new Event(); // (sender,x,y);
-	this.mouseDownMoveEvent = new Event();// (sender,xCurrent,yCurrent,xDown,yDown)
-	this.mouseUpMoveEvent = new Event();// (sender,xUp,yUp,xDown,yDown)
-	this.mouseMoveEvent = new Event();// (sender,x,y)
+	this.clickEvent = new Event(this);// (sender,x,y);
+	this.mouseDownEvent = new Event(this); // (sender, x,y);
+	this.mouseUpEvent = new Event(this); // (sender,x,y);
+	this.mouseDownMoveEvent = new Event(this);// (sender,xCurrent,yCurrent,xDown,yDown)
+	this.mouseUpMoveEvent = new Event(this);// (sender,xUp,yUp,xDown,yDown)
+	this.mouseMoveEvent = new Event(this);// (sender,x,y)
 	var that = this;
 	this.canvas.onclick = function(e) {
 		MouseInputProvider.onclickRedirector.call(this, e, that);

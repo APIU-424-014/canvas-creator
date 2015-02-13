@@ -2,7 +2,6 @@ function MouseInfoOutput(inputProvider) {
 	this.inputProvider = inputProvider;
 	this.inputProvider.mouseDownMoveEvent.register(this, this.mouseDownMove);
 	this.inputProvider.mouseUpMoveEvent.register(this, this.mouseUpMove);
-	this.inputProvider.mouseUpEvent.register(this, this.mouseUp);
 	this.rect = null;
 	this.text = "test";
 	this.enabled = false;
