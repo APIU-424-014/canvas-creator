@@ -1,11 +1,10 @@
 function init() {
-
 	// draw stuff to see whether canvas does work
 	var canvas = document.getElementById("draw");
 	var context = canvas.getContext("2d");
-	context.fillStyle = "rgba(128,128,128,0.5)";
-	context.strokeStyle = "rgba(255,0,0,0.5)";
-	context.lineWidth = 3;
+	context.fillStyle = "rgba(128,128,128,1)";
+	context.strokeStyle = "rgba(255,0,0,1)";
+	context.lineWidth = 2;
 	context.moveTo(70, 70);
 	context.lineTo(100, 70);// here the path ends
 	context.rect(150, 70, 50, 50);
@@ -23,12 +22,22 @@ function init() {
 	context.fill();
 	context.beginPath();
 	context.fillStyle = "rgba(128,255,128,0.5)";
+	context.lineWidth=1;
+	context.moveTo(100,100);
+	context.lineTo(101,101);
+	context.stroke();
 
 	context.fill();
 
 	// collects clicks on canvas
-	mouseInputProvider = new MouseInputProvider(canvas);
-
+	mouseInputProvider = new MouseInputProvider(document.getElementById("infoCanvas"));
+	mouseInputProvider.mouseDownEvent.register(null,function(sender,x,y){console.log("down",x,y);});
+	mouseInputProvider.mouseUpEvent.register(null,function(sender,x,y,dx,dy){console.log("up",x,y,dx,dy);});
+	mouseInputProvider.mouseMoveEvent.register(null,function(sender,x,y){console.log("move",x,y);});
+	mouseInputProvider.mouseDownMoveEvent.register(null,function(sender,x,y,dx,dy){console.log("downmove",x,y,dx,dy);});
+	
+	mouseInfoOutput=new MouseInfoOutput(mouseInputProvider);
+	mouseInfoOutput.setAutoDrawCanavs(document.getElementById('infoCanvas'), true);
 	// provides access to the different Path.mode by showing different input
 	// fields
 	console.log(CanvasDrawingMethod);
@@ -79,5 +88,6 @@ var path;
 var drawer;
 var coder;
 var mouseInputProvider;
+var mouseInfoOutput;
 window.onload = init;
 var current = 0;

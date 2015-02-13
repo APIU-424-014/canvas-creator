@@ -22,7 +22,7 @@ Event.prototype.unregister = function(thisObject, method) {
 };
 Event.prototype.emit = function(content) {
 	// calls all registered methods
-	console.log("emitting", this, arguments);
+	//console.log("emitting", this, arguments);
 	// composing the arguments list by prepending the sender object
 	var allArguments = [ this.sender ];// sender is the origin of the event
 	for (var i = 0; i < arguments.length; i++) {
